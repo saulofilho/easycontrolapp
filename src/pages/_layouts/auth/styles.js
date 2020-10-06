@@ -2,11 +2,14 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 export const Wrapper = styled.div`
-  height: 100%;
-  background: rgba(0, 0, 0, 0.02);
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 900px;
+  margin: 0px auto;
+  padding: 0 20px;
 `;
 
 export const Content = styled.div`
@@ -25,11 +28,11 @@ export const Content = styled.div`
       border-radius: 4px;
       height: 44px;
       padding: 0 15px;
-      color: red;
+      color: #a3a3a3;
       margin: 0 0 10px;
 
       &::placeholder {
-        color: lightgray;
+        color: #a3a3a3;
       }
     }
 

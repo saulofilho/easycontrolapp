@@ -19,10 +19,18 @@ export default createGlobalStyle`
     width: 100%;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased !important;
+    background: #f9f9f9;
   }
 
-  body {
-    -webkit-font-smoothing: antialiased;
+  ::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: lightgreen;
+  }
+  ::selection {
+    background-color: darkblue;
+    color: pink;
   }
 
   body, input, button {
@@ -54,10 +62,10 @@ export default createGlobalStyle`
     font-size: 20px;
   }
   h5 {
-    font-size: 16px;
+    font-size: 18px;
   }
   h6 {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   @media (max-width: 500px) {
@@ -71,13 +79,13 @@ export default createGlobalStyle`
       font-size: 20px;
     }
     h4 {
-      font-size: 14px;
+      font-size: 16px;
     }
     h5 {
-      font-size: 10px;
+      font-size: 14px;
     }
     h6 {
-      font-size: 8px;
+      font-size: 12px;
     }
   }
 `;

@@ -13,8 +13,9 @@ import SideNav, {
   NavIcon,
   NavText,
 } from '@trendmicro/react-sidenav';
-import Header from '~/components/Header';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import Header from '~/components/Header';
+import Footer from '~/components/Footer';
 
 import { Wrapper, Profile } from './styles';
 
@@ -58,7 +59,7 @@ export default function DefaultLayout({ children }) {
             <NavIcon>
               <MdHome size={22} color="#a3a3a3" />
             </NavIcon>
-            <NavText>Dashboard</NavText>
+            <NavText>Home</NavText>
           </NavItem>
           <NavItem eventKey="agenda">
             <NavIcon>
@@ -101,6 +102,7 @@ export default function DefaultLayout({ children }) {
           </NavItem>
         </Nav>
       </SideNav>
+      <Footer />
     </Wrapper>
   );
 }
