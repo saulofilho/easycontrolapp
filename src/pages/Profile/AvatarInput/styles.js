@@ -11,12 +11,15 @@ export const Container = styled.div`
       opacity: 0.7;
     }
 
-    img {
-      height: 120px;
+    .image {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      overflow: hidden;
       width: 120px;
+      height: 120px;
       border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      background: #eee;
+      border: 3px solid lightblue;
     }
 
     input {

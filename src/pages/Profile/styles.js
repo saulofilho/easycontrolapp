@@ -42,7 +42,7 @@ export const Container = styled.div`
     button {
       margin: 5px 0 0;
       height: 44px;
-      background: lightblue;
+      background: lightgreen;
       font-weight: bold;
       color: #fff;
       border: 0;

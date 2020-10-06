@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
-// import logo from '~/assets/logo.svg';
+import logo from '~/assets/logo.svg';
 import { signInRequest } from '~/store/modules/auth/actions';
 
 const schema = Yup.object().shape({
@@ -15,7 +15,7 @@ const schema = Yup.object().shape({
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.auth.loading);
+  const loading = useSelector((state) => state.auth.loading);
 
   function handleSubmit({ email, password }) {
     dispatch(signInRequest(email, password));
@@ -23,8 +23,12 @@ export default function SignIn() {
 
   return (
     <>
-      {/* <img src={logo} alt="GoBarber" /> */}
-      <h1>API Rest</h1>
+      <img src={logo} alt="GoBarber" />
+      <h2>Entrar no Aplicativo.</h2>
+      <h4>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure voluptas
+        aperiam odit, reiciendis dicta nihil.
+      </h4>
       <Form schema={schema} onSubmit={handleSubmit}>
         <Input name="email" type="email" placeholder="Seu email" />
         <Input

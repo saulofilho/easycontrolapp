@@ -38,10 +38,20 @@ export default function AvatarInput() {
   return (
     <Container>
       <label htmlFor="avatar">
-        <img
-          src={
-            preview || 'https://api.adorable.io/avatars/50/abott@adorable.png'
-          }
+        {/* <div className="profile-avatar">
+          <img
+            src={
+              preview || 'https://api.adorable.io/avatars/50/abott@adorable.png'
+            }
+            alt="avatar"
+          />
+        </div> */}
+        <div
+          className="image"
+          style={{
+            backgroundImage: `url(${preview ||
+              'https://api.adorable.io/avatars/50/abott@adorable.png'})`,
+          }}
           alt="avatar"
         />
         <input
