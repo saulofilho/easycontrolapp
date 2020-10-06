@@ -1,33 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 600px;
+  max-width: 900px;
   margin: 0px auto;
+  padding: 0 70px;
 
   display: flex;
   flex-direction: column;
 
-  header {
-    display: flex;
-    align-self: center;
-    align-items: center;
-
-    button {
-      border: 0;
-      background: none;
-    }
-
-    strong {
-      color: #fff;
-      font-size: 24px;
-      margin: 0 15px;
-    }
-  }
-
-  ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
-    margin-top: 30px;
+  h1 {
+    font-weight: 300;
+    color: #4d4d4d;
   }
 `;

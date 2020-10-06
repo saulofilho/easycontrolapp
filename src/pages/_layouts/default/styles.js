@@ -8,6 +8,8 @@ export const Wrapper = styled.div`
   nav {
     background: white;
     border-right: 1px solid lightgray;
+    box-shadow: 1px 1px 2px 0 rgba(31, 45, 61, 0.07);
+    min-width: 30px !important;
 
     .sidenav---navtext---1AE_f {
       color: #a3a3a3 !important;
@@ -19,11 +21,6 @@ export const Wrapper = styled.div`
 
     .sidenav---navitem---9uL5T {
     }
-  }
-
-  strong {
-    display: block;
-    color: #333;
   }
 `;
 

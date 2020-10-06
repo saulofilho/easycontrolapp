@@ -5,7 +5,7 @@ import { Container } from './styles';
 export default function Agenda() {
   return (
     <Container>
-      <h1>agenda</h1>
+      <h1>Agenda</h1>
     </Container>
   );
 }
