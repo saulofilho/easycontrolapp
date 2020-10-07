@@ -4,7 +4,16 @@ import PropTypes from 'prop-types';
 
 import { useSelector } from 'react-redux';
 
-import { MdHome, MdMoneyOff, MdViewAgenda } from 'react-icons/md';
+import {
+  MdHome,
+  MdMonetizationOn,
+  MdEvent,
+  MdTrendingUp,
+  MdDoneAll,
+  MdCompareArrows,
+  MdTrendingDown,
+  MdCardGiftcard,
+} from 'react-icons/md';
 
 import SideNav, {
   Toggle,
@@ -63,42 +72,45 @@ export default function DefaultLayout({ children }) {
           </NavItem>
           <NavItem eventKey="agenda">
             <NavIcon>
-              <MdViewAgenda size={22} color="#a3a3a3" />
+              <MdEvent size={22} color="#a3a3a3" />
             </NavIcon>
             <NavText>Agenda</NavText>
           </NavItem>
           <NavItem eventKey="Finanças">
             <NavIcon>
-              <MdMoneyOff size={22} color="#a3a3a3" />
+              <MdMonetizationOn size={22} color="#a3a3a3" />
             </NavIcon>
             <NavText>Finanças</NavText>
             <NavItem eventKey="fluxo-de-caixa">
+              <NavIcon>
+                <MdCompareArrows size={22} color="#a3a3a3" />
+              </NavIcon>
               <NavText>Fluxo de Caixa</NavText>
             </NavItem>
             <NavItem eventKey="contas-a-receber">
+              <NavIcon>
+                <MdTrendingUp size={22} color="#a3a3a3" />
+              </NavIcon>
               <NavText>Contas a Receber</NavText>
             </NavItem>
             <NavItem eventKey="contas-a-pagar">
+              <NavIcon>
+                <MdTrendingDown size={22} color="#a3a3a3" />
+              </NavIcon>
               <NavText>Contas a Pagar</NavText>
             </NavItem>
           </NavItem>
           <NavItem eventKey="tarefas">
             <NavIcon>
-              <MdHome size={22} color="#a3a3a3" />
+              <MdDoneAll size={22} color="#a3a3a3" />
             </NavIcon>
             <NavText>Tarefas</NavText>
           </NavItem>
           <NavItem eventKey="itens">
             <NavIcon>
-              <MdHome size={22} color="#a3a3a3" />
+              <MdCardGiftcard size={22} color="#a3a3a3" />
             </NavIcon>
             <NavText>Itens</NavText>
-          </NavItem>
-          <NavItem eventKey="calendario">
-            <NavIcon>
-              <MdHome size={22} color="#a3a3a3" />
-            </NavIcon>
-            <NavText>Calendários</NavText>
           </NavItem>
         </Nav>
       </SideNav>

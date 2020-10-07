@@ -49,13 +49,6 @@ export const Wrapper = styled.div`
       > .sidenav---navitem---9uL5T:hover {
       background: lightyellow !important;
     }
-
-    .sidenav---sidenav-nav---3tvij
-      > .sidenav---sidenav-navitem---uwIJ-
-      > .sidenav---navitem---9uL5T
-      .sidenav---navicon---3gCRo:hover {
-      background: lightyellow !important;
-    }
   }
 `;
 

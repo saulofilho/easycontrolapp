@@ -1,20 +1,18 @@
 import React from 'react';
-import swal from '@sweetalert/with-react';
+import swal from 'sweetalert';
+import { MdEdit, MdDelete } from 'react-icons/md';
 import { Table, Container, Form } from './styles';
-import edit from '../../assets/images/ic-edit.png';
-import delet from '../../assets/images/ic-delete.png';
 
-function TableRow(props) {
+function TableRow({ toggleSecondModal, itens = [] }) {
   const getRandomColor = () => {
     const colorValues = [
-      '#fa8d68',
-      '#90d26c',
-      '#68a0fa',
-      '#fab668',
-      '#8368fa',
-      '#fa68b5',
-      '#5fe2c4',
-      '#f55a5a',
+      'orange',
+      'lightblue',
+      'lightgreen',
+      'lightcyan',
+      'pink',
+      'coral',
+      'cornflowblue',
     ];
     return colorValues[Math.floor(Math.random() * colorValues.length)];
   };
@@ -33,33 +31,32 @@ function TableRow(props) {
           </tr>
         </thead>
         <tbody>
-          {props.searchResults.length > 0
-            ? props.searchResults.map(contact => (
-                <tr key={contact.id}>
+          {itens.length > 0
+            ? itens.map(item => (
+                <tr key={item.id}>
                   <td className="iconLetter">
-                    <span
+                    <div
                       style={{
                         background: `${getRandomColor()}`,
                       }}
                     >
-                      <p>{contact.name.charAt(0).toUpperCase()}</p>
-                    </span>
+                      <p>{item.product_name.charAt(0).toUpperCase()}</p>
+                    </div>
                   </td>
-                  <td>{contact.name}</td>
-                  <td>{contact.email}</td>
-                  <td>{contact.phone}</td>
+                  <td>{item.product_name}</td>
+                  <td>{item.product_name}</td>
+                  <td>{item.product_name}</td>
                   <td>
-                    <span role="button" onClick={props.toggleSecondModal}>
-                      <button
-                        className="editBtn"
-                        type="button"
-                        onClick={() => {
-                          props.editRow(contact);
-                        }}
-                      >
-                        <img src={edit} alt="Edit" />
-                      </button>
-                    </span>
+                    <button
+                      className="editBtn"
+                      type="button"
+                      // onClick={() => {
+                      //   editRow(item);
+                      // }}
+                      onClick={toggleSecondModal}
+                    >
+                      <MdEdit size={22} color="#a3a3a3" />
+                    </button>
                   </td>
                   <td>
                     <button
@@ -86,9 +83,7 @@ function TableRow(props) {
                                   <button
                                     className="excluir"
                                     type="button"
-                                    onClick={() =>
-                                      props.deleteContact(contact.id)
-                                    }
+                                    // onClick={() => deleteiIem(item.id)}
                                   >
                                     Excluir
                                   </button>
@@ -99,7 +94,7 @@ function TableRow(props) {
                         })
                       }
                     >
-                      <img src={delet} alt="Delete" />
+                      <MdDelete size={22} color="#a3a3a3" />
                     </button>
                   </td>
                 </tr>
