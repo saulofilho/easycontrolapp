@@ -110,7 +110,7 @@ export default function DefaultLayout({ children }) {
             <NavIcon>
               <MdCardGiftcard size={22} color="#a3a3a3" />
             </NavIcon>
-            <NavText>Itens</NavText>
+            <NavText>Itens/Produtos</NavText>
           </NavItem>
         </Nav>
       </SideNav>

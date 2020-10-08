@@ -12,11 +12,7 @@ export const Form = styled.form`
   display: flex;
   justify-content: center;
   flex-flow: column;
-  width: 432px;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 16px 10px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ffffff;
   overflow: hidden;
 
   p {
@@ -54,29 +50,15 @@ export const Form = styled.form`
     border-top: 1px solid #c0c3d2;
   }
 
-  .cancelar {
-    width: 72px;
-    height: 32px;
-    border: none;
-    color: #fa7268;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
-    border-radius: 16px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
-    border: solid 1px rgba(255, 255, 255, 0.16);
-  }
-
   .salvar {
     width: 72px;
     height: 32px;
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
-    border-radius: 16px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px rgba(255, 255, 255, 0.16);
-    background-color: #fa7268;
+    background-color: lightgreen;
     color: #fff;
     margin: 16px;
 

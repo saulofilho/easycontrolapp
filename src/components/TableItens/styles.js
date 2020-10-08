@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Table = styled.table`
-  background-color: #ffffff;
+  background: #ffffff;
   border-spacing: 0;
   overflow: hidden;
   width: 100%;
@@ -9,9 +9,6 @@ export const Table = styled.table`
   text-align: left;
   border-collapse: separate;
   border: 1px solid #e1e1e1;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
 
   .iconLetter {
     width: 50px;
@@ -48,7 +45,7 @@ export const Table = styled.table`
     font-weight: normal;
   }
 
-  tbody tr {
+  /* tbody tr {
     animation: background-fade 10s forwards;
     -webkit-animation: background-fade 10s forwards;
     -moz-animation: background-fade 10s forwards;
@@ -68,7 +65,7 @@ export const Table = styled.table`
     10% {
       background: lightgreen;
     }
-  }
+  } */
 
   tbody tr:hover {
     background: lightblue !important;

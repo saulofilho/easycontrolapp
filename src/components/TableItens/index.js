@@ -1,9 +1,9 @@
 import React from 'react';
-import swal from 'sweetalert';
+import swal from '@sweetalert/with-react';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { Table, Container, Form } from './styles';
 
-function TableRow({ toggleSecondModal, itens = [] }) {
+function TableRow(props) {
   const getRandomColor = () => {
     const colorValues = [
       'orange',
@@ -23,16 +23,21 @@ function TableRow({ toggleSecondModal, itens = [] }) {
         <thead>
           <tr>
             <th />
-            <th>Contatos</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
+            <th>id</th>
+            <th>nome</th>
+            <th>infos</th>
+            <th>departamento</th>
+            <th>cor</th>
+            <th>material</th>
+            <th>preco</th>
+            <th>estoque</th>
             <th />
             <th />
           </tr>
         </thead>
         <tbody>
-          {itens.length > 0
-            ? itens.map(item => (
+          {props.itens.length > 0
+            ? props.itens.map(item => (
                 <tr key={item.id}>
                   <td className="iconLetter">
                     <div
@@ -43,17 +48,19 @@ function TableRow({ toggleSecondModal, itens = [] }) {
                       <p>{item.product_name.charAt(0).toUpperCase()}</p>
                     </div>
                   </td>
+                  <td>{item.id}</td>
                   <td>{item.product_name}</td>
-                  <td>{item.product_name}</td>
-                  <td>{item.product_name}</td>
+                  <td>{item.product_info}</td>
+                  <td>{item.product_department}</td>
+                  <td>{item.product_color}</td>
+                  <td>{item.product_material}</td>
+                  <td>{item.product_price}</td>
+                  <td>{item.product_stock}</td>
                   <td>
                     <button
                       className="editBtn"
                       type="button"
-                      // onClick={() => {
-                      //   editRow(item);
-                      // }}
-                      onClick={toggleSecondModal}
+                      onClick={props.toggleSecondModal}
                     >
                       <MdEdit size={22} color="#a3a3a3" />
                     </button>
@@ -69,9 +76,7 @@ function TableRow({ toggleSecondModal, itens = [] }) {
                             <Container>
                               <Form>
                                 <p>Excluir contato</p>
-                                <label htmlFor="name">
-                                  Deseja realmente excluir o contato?
-                                </label>
+                                <p>Deseja realmente excluir o contato?</p>
                                 <div className="buttons">
                                   <button
                                     className="cancelar"
@@ -83,7 +88,10 @@ function TableRow({ toggleSecondModal, itens = [] }) {
                                   <button
                                     className="excluir"
                                     type="button"
-                                    // onClick={() => deleteiIem(item.id)}
+                                    onClick={() => {
+                                      props.deleteItem(item.id);
+                                      window.location.reload();
+                                    }}
                                   >
                                     Excluir
                                   </button>
