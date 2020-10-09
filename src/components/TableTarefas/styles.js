@@ -106,9 +106,10 @@ export const Form = styled.form`
   display: flex;
   justify-content: center;
   flex-flow: column;
-  align-items: flex-start;
-  width: 100%;
+  width: 432px;
   height: auto;
+  border-radius: 16px;
+  box-shadow: 0 16px 10px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
   overflow: hidden;
 
@@ -116,6 +117,7 @@ export const Form = styled.form`
     font-size: 16px;
     font-weight: normal;
     padding: 16px;
+    border-bottom: 1px solid #c0c3d2;
     margin-bottom: 34px;
   }
 
@@ -131,7 +133,7 @@ export const Form = styled.form`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    outline: 0;
+    border-top: 1px solid #c0c3d2;
   }
 
   .cancelar {
@@ -142,7 +144,8 @@ export const Form = styled.form`
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
-    border-radius: 5px;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px rgba(255, 255, 255, 0.16);
   }
 
@@ -152,7 +155,8 @@ export const Form = styled.form`
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
-    border-radius: 5px;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px rgba(255, 255, 255, 0.16);
     background-color: #fa7268;
     color: #fff;
