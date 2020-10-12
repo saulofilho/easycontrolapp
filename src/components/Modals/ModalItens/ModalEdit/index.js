@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import MaskedInput from 'react-text-mask';
 import { Container, Form } from './styles';
 

@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
+
 import Modali, { useModali } from 'modali';
 import SearchField from 'react-search-field';
 import TypeChecker from 'typeco';
 import Paginator from 'react-hooks-paginator';
+
 import DataService from '~/services/allServices';
+
 import TableItens from '~/components/TableItens';
+
 import ModalCreate from '~/components/Modals/ModalItens/ModalCreate';
 import ModalEdit from '~/components/Modals/ModalItens/ModalEdit';
 
-import { Container, TableHeader, TableWapper, Box } from './styles';
+import ChartItens from '~/components/Charts/ChartItens';
+
+import { Container, TableHeader, TableWapper } from './styles';
 
 export default function Itens() {
   // data
@@ -135,16 +141,10 @@ export default function Itens() {
         <h1>Itens</h1>
         <h4>Produtos cadastrados</h4>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          Aqui você encontra todos os seus itens do seu inventário. Adcione,
+          exclua, edite e delete o que você quiser, o que você precisar.
         </p>
+        <ChartItens itens={search} />
         <TableWapper>
           <TableHeader>
             <h5>Lista dos produtos</h5>

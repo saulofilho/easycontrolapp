@@ -8,7 +8,7 @@ export const Table = styled.table`
   height: auto;
   text-align: left;
   border-collapse: separate;
-  border: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
 
   .iconLetter {
     width: 50px;
@@ -31,11 +31,11 @@ export const Table = styled.table`
   }
 
   thead th {
-    font-size: 13px;
+    font-size: 12px;
     color: #9198af;
     font-weight: normal;
-    height: 40px;
-    border-bottom: 1px solid #e1e1e1;
+    border-bottom: 1px solid yellowgreen;
+    padding: 10px;
   }
 
   tbody td {
@@ -43,6 +43,7 @@ export const Table = styled.table`
     color: #2a2d3b;
     font-size: 14px;
     font-weight: normal;
+    padding: 10px;
   }
 
   /* tbody tr {

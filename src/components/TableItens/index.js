@@ -9,7 +9,6 @@ function TableRow(props) {
       <Table>
         <thead>
           <tr>
-            <th />
             <th>id</th>
             <th>nome</th>
             <th>infos</th>
@@ -29,7 +28,6 @@ function TableRow(props) {
                 .map(item => (
                   <tr key={item.id}>
                     {console.log('dssadas', props.itens)}
-                    <td />
                     <td>{item.id}</td>
                     <td>{item.product_name}</td>
                     <td>{item.product_info}</td>
