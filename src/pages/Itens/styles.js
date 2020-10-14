@@ -27,7 +27,7 @@ export const Container = styled.div`
   }
 
   @media (max-width: 500px) {
-    padding: 0 20px 50px 70px;
+    padding: 0 20px 50px;
   }
 `;
 
@@ -57,7 +57,7 @@ export const TableHeader = styled.div`
   }
 
   @media (max-width: 500px) {
-    padding: 0 20px 50px 70px;
+    padding: 10px 20px 50px;
   }
 `;
 
@@ -96,7 +96,7 @@ export const TableWapper = styled.div`
 
   button.bnt-add {
     margin: 10px 0;
-    width: calc(100% - 50%);
+    width: calc(100% - 60%);
     background: lightgreen;
     border: 0;
     padding: 10px 0;
@@ -106,9 +106,5 @@ export const TableWapper = styled.div`
     &:hover {
       background: ${darken(0.09, 'lightgreen')};
     }
-  }
-
-  @media (max-width: 500px) {
-    padding: 0 20px 50px 70px;
   }
 `;

@@ -76,7 +76,7 @@ export default function DefaultLayout({ children }) {
             </NavIcon>
             <NavText>Agenda</NavText>
           </NavItem>
-          <NavItem eventKey="Finanças">
+          <NavItem eventKey="financas">
             <NavIcon>
               <MdMonetizationOn size={22} color="#a3a3a3" />
             </NavIcon>

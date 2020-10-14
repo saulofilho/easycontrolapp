@@ -1,75 +1,39 @@
 import styled from 'styled-components';
 
+export const TableOverflow = styled.div`
+  overflow-x: auto;
+`;
+
 export const Table = styled.table`
   background: #ffffff;
   border-spacing: 0;
-  overflow: hidden;
   width: 100%;
   height: auto;
   text-align: left;
-  border-collapse: separate;
   border-top: 1px solid #e1e1e1;
-
-  .iconLetter {
-    width: 50px;
-  }
-
-  .iconLetter div {
-    width: 24px;
-    height: 24px;
-    background-color: #fa8d68;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  .iconLetter div p {
-    text-align: center;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: normal;
-  }
+  border-collapse: collapse;
 
   thead th {
-    font-size: 12px;
+    font-size: 14px;
     color: #9198af;
     font-weight: normal;
-    border-bottom: 1px solid yellowgreen;
+    border-bottom: 3px solid #e1e1e1;
     padding: 10px;
   }
 
   tbody td {
-    height: 40px;
-    color: #2a2d3b;
+    color: #4d4d4d;
     font-size: 14px;
     font-weight: normal;
     padding: 10px;
   }
 
-  /* tbody tr {
-    animation: background-fade 10s forwards;
-    -webkit-animation: background-fade 10s forwards;
-    -moz-animation: background-fade 10s forwards;
+  tbody tr {
+    vertical-align: baseline;
   }
-
-  @-webkit-keyframes background-fade {
-    10% {
-      background: lightgreen;
-    }
-  }
-  @-moz-keyframes background-fade {
-    10% {
-      background: lightgreen;
-    }
-  }
-  @keyframes background-fade {
-    10% {
-      background: lightgreen;
-    }
-  } */
 
   tbody tr:hover {
-    background: lightblue !important;
+    background: #dfeff7 !important;
     cursor: pointer;
   }
 

@@ -1,10 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import {
+  format,
+  getMonth,
+  parseISO,
+  // subDays,
+  // addDays,
+  // setHours,
+  // setMinutes,
+  // setSeconds,
+  // setMilliseconds,
+  // isBefore,
+  // isEqual,
+  // parseISO,
+} from 'date-fns';
+import { utcToZonedTime } from 'date-fns-tz';
+import pt from 'date-fns/locale/pt';
+
+import { CSVLink } from 'react-csv';
 
 import Modali, { useModali } from 'modali';
-import SearchField from 'react-search-field';
-import TypeChecker from 'typeco';
-import Paginator from 'react-hooks-paginator';
-
 import DataService from '~/services/allServices';
 
 import TableItens from '~/components/TableItens';
@@ -17,19 +31,31 @@ import ChartItens from '~/components/Charts/ChartItens';
 import { Container, TableHeader, TableWapper } from './styles';
 
 export default function Itens() {
+  // const [loading, setLoading] = useState(true);
+
+  // date
+  const monthNow = new Date();
+  const month = monthNow.toLocaleString('default', { month: 'short' });
+  console.log('monthNow', month);
+
+  const [date, setDate] = useState(new Date());
+
+  const dateFormatted = useMemo(
+    () => format(date, "d 'de' MMMM 'de' Y HH:mm:ss", { locale: pt }),
+    [date]
+  );
+
+  console.log('date', date);
+  console.log('dateFormatted', dateFormatted);
+
   // data
   const [itens, setItens] = useState([]);
 
-  // paginator
-  const [offset, setOffset] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentData, setCurrentData] = useState([]);
+  const z = itens.map(x =>
+    parseISO(x.createdAt).toLocaleString('default', { month: 'short' })
+  );
 
-  // search
-  const [search, setSearch] = useState('');
-
-  // page limit
-  const pageLimit = 10;
+  console.log('xa', z);
 
   // initial form state
   const initialFormState = {
@@ -43,6 +69,7 @@ export default function Itens() {
     product_stock: '',
   };
 
+  // get item
   const [currentItem, setCurrentItem] = useState(initialFormState);
 
   // modal
@@ -63,11 +90,23 @@ export default function Itens() {
       const { data } = response;
 
       setItens([...data]);
-      setSearch(data);
     }
 
     loadItens();
   }, []);
+
+  // search
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearchInputChanges = e => {
+    setSearchValue(e.target.value);
+  };
+
+  const results = !searchValue
+    ? itens
+    : itens.filter(item =>
+        item.product_name.toLowerCase().includes(searchValue.toLowerCase())
+      );
 
   // create
   const [btnDisable, setBtnDisable] = useState('');
@@ -101,7 +140,6 @@ export default function Itens() {
   const editRow = item => {
     toggleSecondModal();
     setCurrentItem(item);
-    console.log('item item', item);
   };
 
   // delete
@@ -110,30 +148,6 @@ export default function Itens() {
       setItens(itens.filter(item => item.id !== itens.id));
     });
   };
-
-  // search
-  const getMatchedList = searchText => {
-    if (TypeChecker.isEmpty(searchText)) return itens;
-
-    // console.log('itens', itens);
-
-    return itens.filter(item =>
-      item.product_name.toLowerCase().includes(searchText.toLowerCase())
-    );
-  };
-
-  const onChange = value => {
-    setSearch(getMatchedList(value));
-  };
-
-  // console.log('currentData', currentData);
-
-  // console.log('search', search);
-
-  // paginator
-  useEffect(() => {
-    setCurrentData(itens.slice(offset, offset + pageLimit));
-  }, [offset, itens]);
 
   return (
     <>
@@ -144,7 +158,7 @@ export default function Itens() {
           Aqui você encontra todos os seus itens do seu inventário. Adcione,
           exclua, edite e delete o que você quiser, o que você precisar.
         </p>
-        <ChartItens itens={search} />
+        <ChartItens itens={itens} />
         <TableWapper>
           <TableHeader>
             <h5>Lista dos produtos</h5>
@@ -159,27 +173,31 @@ export default function Itens() {
               onClick={toggleFirstModal}
               type="button"
             >
-              Cadastrar um novo item
+              Cadastrar novo item
             </button>
-            <SearchField
-              placeholder="Busque por palavras-chave"
-              classNames="search"
-              onChange={onChange}
-            />
+            <CSVLink data={itens}>Download CVS</CSVLink>
+            <form className="search">
+              <input
+                value={searchValue}
+                onChange={handleSearchInputChanges}
+                type="text"
+              />
+            </form>
+            {itens.length ? (
+              <div>
+                <p>
+                  Total de itens cadastrados: <strong>{itens.length}</strong>
+                </p>
+              </div>
+            ) : (
+              <p className="search-result-none">Carregando...</p>
+            )}
           </TableHeader>
           <TableItens
             toggleSecondModal={toggleSecondModal}
-            itens={search}
+            itens={results}
             deleteItem={deleteItem}
             editRow={editRow}
-          />
-          <Paginator
-            totalRecords={itens.length}
-            pageLimit={pageLimit}
-            pageNeighbours={2}
-            setOffset={setOffset}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
           />
         </TableWapper>
       </Container>
@@ -202,3 +220,53 @@ export default function Itens() {
     </>
   );
 }
+
+// class PostSection extends React.Component {
+//   static defaultProps = {
+//     posts: [],
+//     title: '',
+//     limit: 12,
+//     showLoadMore: true,
+//     loadMoreTitle: 'VER MAIS',
+//     perPageLimit: 12
+//   }
+
+//   state = {
+//     limit: this.props.limit
+//   }
+
+//   increaseLimit = () =>
+//     this.setState(prevState => ({
+//       limit: prevState.limit + this.props.perPageLimit
+//     }))
+
+//   render() {
+//     const { posts, title, showLoadMore, loadMoreTitle } = this.props,
+//       { limit } = this.state,
+//       visiblePosts = posts.slice(0, limit || posts.length)
+
+//     return (
+//       <div className="post-section">
+//         {title && <h2>{title}</h2>}
+//         {!!visiblePosts.length && (
+//           <div className="post-section-wrapper">
+//             {visiblePosts.map((post, index) =>
+//               post.status == "Ad"
+//               ? <AdCard key={post.title + index} {...post} />
+//               : <PostCard key={post.title + index} {...post} />
+//               )}
+//           </div>
+//         )}
+//         {showLoadMore && visiblePosts.length < posts.length && (
+//           <div className="ver-mais">
+//             <button onClick={this.increaseLimit}>
+//               {loadMoreTitle}
+//             </button>
+//           </div>
+//         )}
+//       </div>
+//     )
+//   }
+// }
+
+// export default PostSection

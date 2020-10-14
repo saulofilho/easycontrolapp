@@ -19,11 +19,12 @@ export default createGlobalStyle`
     width: 100%;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased !important;
-    background: #f9f9f9;
+    background: #f7f7f7;
   }
 
   ::-webkit-scrollbar {
     width: 0.4rem;
+    height: 0.3rem;
   }
   ::-webkit-scrollbar-thumb {
     background-color: lightgreen;

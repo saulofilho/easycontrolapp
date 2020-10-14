@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modali, { useModali } from 'modali';
-import SearchField from 'react-search-field';
-import TypeChecker from 'typeco';
-import Paginator from 'react-hooks-paginator';
+
 import DataService from '~/services/allServices';
 import TableTarefas from '~/components/TableTarefas';
 import ModalCreate from '~/components/Modals/ModalItens/ModalCreate';
@@ -13,14 +11,6 @@ import { Container, TableHeader, TableWapper, Box } from './styles';
 export default function Itens() {
   // data
   const [itens, setItens] = useState([]);
-
-  // paginator
-  const [offset, setOffset] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentData, setCurrentData] = useState([]);
-
-  // search
-  const [search, setSearch] = useState('');
 
   // page limit
   const pageLimit = 10;
@@ -52,7 +42,6 @@ export default function Itens() {
       const { data } = response;
 
       setItens([...data]);
-      setSearch(data);
     }
 
     loadItens();
@@ -100,34 +89,9 @@ export default function Itens() {
     });
   };
 
-  // search
-  const getMatchedList = searchText => {
-    if (TypeChecker.isEmpty(searchText)) return itens;
-
-    // console.log('itens', itens);
-
-    return itens.filter(item =>
-      item.todo_title.toLowerCase().includes(searchText.toLowerCase())
-    );
-  };
-
-  const onChange = value => {
-    setSearch(getMatchedList(value));
-  };
-
-  // console.log('currentData', currentData);
-
-  // console.log('search', search);
-
-  // paginator
-  useEffect(() => {
-    setCurrentData(itens.slice(offset, offset + pageLimit));
-  }, [offset, itens]);
-
   return (
     <>
       <Container>
-        <button onClick={updateItem}>xx</button>
         <TableWapper>
           <TableHeader>
             <h5>Clientes</h5>
@@ -140,25 +104,12 @@ export default function Itens() {
             <button onClick={toggleFirstModal} type="button">
               create
             </button>
-            <SearchField
-              placeholder="Busque por palavras-chave"
-              classNames="search"
-              onChange={onChange}
-            />
           </TableHeader>
           <TableTarefas
             toggleSecondModal={toggleSecondModal}
-            itens={currentData}
+            itens={itens}
             deleteItem={deleteItem}
             editRow={editRow}
-          />
-          <Paginator
-            totalRecords={itens.length}
-            pageLimit={pageLimit}
-            pageNeighbours={2}
-            setOffset={setOffset}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
           />
         </TableWapper>
         <h1>Tarefas</h1>

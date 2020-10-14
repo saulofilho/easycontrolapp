@@ -1,11 +1,11 @@
 import React from 'react';
 import swal from '@sweetalert/with-react';
 import { MdEdit, MdDelete } from 'react-icons/md';
-import { Table, Container, Form } from './styles';
+import { Table, TableOverflow, Container, Form } from './styles';
 
 function TableRow(props) {
   return (
-    <>
+    <TableOverflow>
       <Table>
         <thead>
           <tr>
@@ -27,7 +27,6 @@ function TableRow(props) {
                 .sort((a, b) => a.id - b.id)
                 .map(item => (
                   <tr key={item.id}>
-                    {console.log('dssadas', props.itens)}
                     <td>{item.id}</td>
                     <td>{item.product_name}</td>
                     <td>{item.product_info}</td>
@@ -42,7 +41,7 @@ function TableRow(props) {
                         type="button"
                         onClick={() => props.editRow(item)}
                       >
-                        <MdEdit size={22} color="#a3a3a3" />
+                        <MdEdit size={22} color="lightblue" />
                       </button>
                     </td>
                     <td>
@@ -90,7 +89,7 @@ function TableRow(props) {
             : null}
         </tbody>
       </Table>
-    </>
+    </TableOverflow>
   );
 }
 

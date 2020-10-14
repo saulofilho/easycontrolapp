@@ -31,7 +31,7 @@ export const Wrapper = styled.div`
       > .sidenav---navitem---9uL5T::after {
       background: unset !important;
       opacity: unset !important;
-      border-left: 3px solid orange;
+      border-left: 3px solid lightgreen;
     }
 
     .sidenav---sidenav-subnav---1EN61
@@ -47,10 +47,16 @@ export const Wrapper = styled.div`
     .sidenav---sidenav-subnav---1EN61
       > .sidenav---sidenav-subnavitem---1cD47
       > .sidenav---navitem---9uL5T:hover {
-      background: lightyellow !important;
+      background: #dfeff7 !important;
+    }
+    @media (max-width: 500px) {
+      position: unset;
+      display: none;
     }
   }
 `;
+
+export const TopNav = styled.div``;
 
 export const Profile = styled.div`
   width: 50px;
