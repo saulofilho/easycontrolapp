@@ -22,10 +22,12 @@ import {
   Radar,
   RadarChart,
   PolarGrid,
+  RadialBarChart,
+  RadialBar,
   ReferenceLine,
 } from 'recharts';
 
-import { ContainerCharts, TextCharts } from './styles';
+const COLORS = ['green', 'red', 'yellow'];
 
 function ChartItens(props) {
   const dateFormatMonth = props.itens.map(date => {
@@ -42,70 +44,133 @@ function ChartItens(props) {
 
   return (
     <>
-      <ContainerCharts>
-        <TextCharts>
-          Confira o estoque e o preço de cada item durante o ano.
-        </TextCharts>
+      <div className="chart-wrapper">
+        <h4>titulo teste</h4>
+        <p>teste texto</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <LineChart data={dateFormatMonth}>
-            <Line type="monotone" dataKey="product_name" stroke="pink" />
-            <Line type="monotone" dataKey="product_stock" stroke="darkblue" />
-            <Line type="monotone" dataKey="product_price" stroke="darkgreen" />
+            <Line type="monotone" dataKey="product_stock" stroke="lightblue" />
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="createdAt" />
             <YAxis />
-            <Tooltip />
-            <Legend />
           </LineChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>PieChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <PieChart>
             <Pie
-              data={dateFormatMonth}
+              data={props.itens}
               dataKey="product_stock"
-              outerRadius={110}
+              outerRadius={67}
+              fill="yellowgreen"
+              stroke="white"
+            />
+            <Pie
+              data={props.itens}
+              dataKey="product_stock"
+              innerRadius={70}
+              outerRadius={80}
               fill="lightblue"
               stroke="white"
               label={{ fill: 'gray', fontSize: '12px' }}
             />
-            <Tooltip />
           </PieChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>
-          Veja a movimentação por meses [fazer funcao q vai filtrar array por
-          meses e colocar no react-select]{' '}
-        </TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <LineChart
             layout="vertical"
-            data={dateFormatMonth}
+            data={props.itens}
             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="number" />
-            <YAxis dataKey="createdAt" type="category" />
+            <YAxis dataKey="product_stock" type="category" />
             <Tooltip />
             <Legend />
-            <Line
-              dataKey="product_stock"
-              stroke="darkblue"
-              activeDot={{ r: 5 }}
-            />
-            <Line
-              dataKey="product_price"
-              stroke="darkgreen"
-              activeDot={{ r: 5 }}
-            />
+            <Line dataKey="product_stock" stroke="red" activeDot={{ r: 5 }} />
+            <Line dataKey="product_price" stroke="blue" activeDot={{ r: 5 }} />
           </LineChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>LineChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2x</h4>
+        <p>teste texto 2</p>
+        <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
+          <ComposedChart
+            layout="vertical"
+            width={600}
+            height={400}
+            data={props.itens}
+            margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid />
+            <XAxis type="number" />
+            <YAxis dataKey="product_name" type="category" />
+            <Tooltip />
+            <Legend />
+            <Area dataKey="product_price" fill="red" stroke="blue" />
+            <Bar dataKey="product_price" barSize={5} fill="yellow" />
+            <Line
+              dataKey="product_stock"
+              stroke="orange"
+              activeDot={{ r: 5 }}
+            />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
+        <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
+          <PieChart>
+            <Pie
+              data={props.itens}
+              dataKey="product_stock"
+              fill="orange"
+              stroke="white"
+              outerRadius={67}
+            />
+            <Pie
+              data={props.itens}
+              dataKey="product_stock"
+              innerRadius={70}
+              outerRadius={80}
+              fill="red"
+              stroke="white"
+              label={{ fill: 'gray', fontSize: '12px' }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
+        <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
+          <PieChart width={30} height={30}>
+            <Pie
+              data={props.itens}
+              dataKey="product_stock"
+              fill="orange"
+              stroke="white"
+              outerRadius={90}
+            >
+              {props.itens.map((entry, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <LineChart data={props.itens}>
             <Line
@@ -114,33 +179,50 @@ function ChartItens(props) {
               strokeWidth={2}
               activeDot={{ r: 5 }}
             />
-            <Line
-              dataKey="product_price"
-              stroke="blue"
-              strokeWidth={2}
-              activeDot={{ r: 5 }}
-            />
-            <Line
-              dataKey="product_name"
-              stroke="blue"
-              strokeWidth={2}
-              activeDot={{ r: 5 }}
-            />
-            <Tooltip />
-            <Legend />
           </LineChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>AreaChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
+        <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
+          <PieChart>
+            <Pie
+              data={props.itens}
+              dataKey="product_stock"
+              stroke="red"
+              fill="#8884d8"
+              innerRadius={90}
+              outerRadius={105}
+            >
+              {props.itens.map((entry, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
+        <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
+          <BarChart data={props.itens}>
+            <Bar dataKey="product_stock" fill="#8884d8" barSize={5} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="99%" height={40}>
           <AreaChart data={props.itens}>
             <Area dataKey="product_stock" stroke="red" fill="#8884d8" />
           </AreaChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>AreaChart CartesianGrid</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <AreaChart
             data={props.itens}
@@ -161,9 +243,10 @@ function ChartItens(props) {
             <Area dataKey="product_stock" stroke="red" fill="#8884d8" />
           </AreaChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>PieChart q</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <PieChart>
             <Pie
@@ -178,9 +261,10 @@ function ChartItens(props) {
             />
           </PieChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>BarChart CartesianGrid</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <BarChart
             data={props.itens}
@@ -205,9 +289,10 @@ function ChartItens(props) {
             />
           </BarChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>AreaChart CartesianGrid</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <AreaChart
             data={props.itens}
@@ -237,9 +322,10 @@ function ChartItens(props) {
             />
           </AreaChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>RadarChart PolarGrid</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <RadarChart outerRadius={150} data={props.itens}>
             <PolarGrid stroke="#8884d8" />
@@ -262,9 +348,36 @@ function ChartItens(props) {
             <Legend />
           </RadarChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>LineChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
+        <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
+          <RadialBarChart
+            cx={150}
+            innerRadius={20}
+            outerRadius={140}
+            barSize={7}
+            data={props.itens}
+          >
+            <RadialBar
+              minAngle={15}
+              label={{
+                position: 'insideStart',
+                fill: 'red',
+                fontSize: '11px',
+              }}
+              background={{ fill: 'blue' }}
+              clockWise
+              dataKey="product_stock"
+            />
+            <Legend iconSize={10} layout="vertical" verticalAlign="middle" />
+          </RadialBarChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <LineChart
             data={props.itens}
@@ -279,9 +392,10 @@ function ChartItens(props) {
             <Line dataKey="product_price" stroke="yellow" />
           </LineChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>BarChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <BarChart
             data={props.itens}
@@ -302,9 +416,10 @@ function ChartItens(props) {
             <Bar dataKey="product_price" fill="red" barSize={5} />
           </BarChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>AreaChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <AreaChart
             data={props.itens}
@@ -317,9 +432,10 @@ function ChartItens(props) {
             <Area dataKey="product_stock" stroke="green" fill="blue" />
           </AreaChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>ComposedChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <ComposedChart
             data={props.itens}
@@ -335,9 +451,10 @@ function ChartItens(props) {
             <Line dataKey="product_stock" stroke="white" activeDot={{ r: 5 }} />
           </ComposedChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>BarChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <BarChart
             data={props.itens}
@@ -364,9 +481,10 @@ function ChartItens(props) {
             />
           </BarChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>BarChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <BarChart
             data={props.itens}
@@ -386,9 +504,10 @@ function ChartItens(props) {
             <Bar dataKey="product_stock" fill="green" barSize={5} />
           </BarChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>LineChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <LineChart
             data={props.itens}
@@ -408,9 +527,10 @@ function ChartItens(props) {
             <Line dataKey="product_stock" stroke="red" activeDot={{ r: 5 }} />
           </LineChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>BarChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <BarChart
             data={props.itens}
@@ -426,9 +546,10 @@ function ChartItens(props) {
             <Bar dataKey="product_stock" fill="blue" barSize={5} />
           </BarChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>AreaChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <AreaChart
             data={props.itens}
@@ -458,9 +579,54 @@ function ChartItens(props) {
             />
           </AreaChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>line chart CartesianGrid</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
+        <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
+          <PieChart>
+            <Pie
+              data={props.itens}
+              dataKey="product_stock"
+              stroke="white"
+              innerRadius={70}
+              outerRadius={80}
+              fill="#8884d8"
+              paddingAngle={1}
+            >
+              {props.itens.map((entry, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
+        <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
+          <PieChart>
+            <Pie
+              data={props.itens}
+              dataKey="product_stock"
+              innerRadius={70}
+              stroke="white"
+              outerRadius={80}
+              startAngle={180}
+              endAngle={0}
+              fill="#8884d8"
+              paddingAngle={1}
+            >
+              {props.itens.map((entry, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <LineChart
             width={600}
@@ -487,9 +653,10 @@ function ChartItens(props) {
             />
           </LineChart>
         </ResponsiveContainer>
-      </ContainerCharts>
-      <ContainerCharts>
-        <TextCharts>BarChart</TextCharts>
+      </div>
+      <div className="chart-wrapper">
+        <h4>titulo teste 2</h4>
+        <p>teste texto 2</p>
         <ResponsiveContainer width="100%" aspect={6.0 / 3.0}>
           <BarChart
             width={600}
@@ -507,7 +674,7 @@ function ChartItens(props) {
             <Bar dataKey="product_stock" fill="red" barSize={5} />
           </BarChart>
         </ResponsiveContainer>
-      </ContainerCharts>
+      </div>
     </>
   );
 }

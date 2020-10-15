@@ -51,13 +51,13 @@ export default createGlobalStyle`
   }
 
   h1 {
-    font-size: 50px;
-  }
-  h2 {
     font-size: 40px;
   }
+  h2 {
+    font-size: 34px;
+  }
   h3 {
-    font-size: 30px;
+    font-size: 28px;
   }
   h4 {
     font-size: 20px;

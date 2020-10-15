@@ -1,9 +1,20 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/control-has-associated-label */
+import React, { useState } from 'react';
 import swal from '@sweetalert/with-react';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { Table, TableOverflow, Container, Form } from './styles';
 
 function TableRow(props) {
+  // btn load more
+  const [showLoadMore, setShowLoadMore] = useState(true);
+  const [limit, setLimit] = useState(10);
+
+  const increaseLimit = () => {
+    setLimit(limit + limit);
+  };
+
+  const visiblePosts = props.itens.slice(0, limit || props.itens.length);
+
   return (
     <TableOverflow>
       <Table>
@@ -22,8 +33,8 @@ function TableRow(props) {
           </tr>
         </thead>
         <tbody>
-          {props.itens.length > 0
-            ? props.itens
+          {visiblePosts.length > 0
+            ? visiblePosts
                 .sort((a, b) => a.id - b.id)
                 .map(item => (
                   <tr key={item.id}>
@@ -54,8 +65,8 @@ function TableRow(props) {
                             content: (
                               <Container>
                                 <Form>
-                                  <p>Excluir contato</p>
-                                  <p>Deseja realmente excluir o contato?</p>
+                                  <p>Excluir item</p>
+                                  <p>Deseja realmente excluir o item?</p>
                                   <div className="buttons">
                                     <button
                                       className="cancelar"
@@ -81,7 +92,7 @@ function TableRow(props) {
                           })
                         }
                       >
-                        <MdDelete size={22} color="#ff99cc" />
+                        <MdDelete size={22} color="pink" />
                       </button>
                     </td>
                   </tr>
@@ -89,6 +100,13 @@ function TableRow(props) {
             : null}
         </tbody>
       </Table>
+      {showLoadMore && visiblePosts.length < props.itens.length && (
+        <div className="btn-ver-mais">
+          <button type="button" onClick={increaseLimit}>
+            CARREGAR MAIS ITENS
+          </button>
+        </div>
+      )}
     </TableOverflow>
   );
 }

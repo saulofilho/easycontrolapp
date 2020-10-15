@@ -1,7 +1,34 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const TableOverflow = styled.div`
   overflow-x: auto;
+  padding: 20px 0;
+
+  .btn-ver-mais {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 0;
+  }
+
+  .btn-ver-mais button {
+    margin: 0 auto;
+    text-align: center;
+    width: auto;
+    background: lightgreen;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    border: unset;
+
+    &:hover {
+      background: ${darken(0.09, 'lightgreen')};
+      color: white;
+    }
+  }
 `;
 
 export const Table = styled.table`
@@ -19,6 +46,7 @@ export const Table = styled.table`
     font-weight: normal;
     border-bottom: 3px solid #e1e1e1;
     padding: 10px;
+    text-transform: capitalize;
   }
 
   tbody td {
@@ -30,6 +58,7 @@ export const Table = styled.table`
 
   tbody tr {
     vertical-align: baseline;
+    text-transform: capitalize;
   }
 
   tbody tr:hover {

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  text-transform: capitalize;
-
   nav {
     position: fixed;
     background: white;

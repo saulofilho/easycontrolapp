@@ -13,10 +13,10 @@ export const Container = styled.div`
 
   h1 {
     font-weight: 300;
+    padding-bottom: 20px;
   }
   h4 {
-    font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding: 40px 0 20px 0;
   }
   p {
@@ -44,10 +44,15 @@ export const TableHeader = styled.div`
   h1 {
     font-weight: 300;
   }
+  h4:first-child {
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 0 5px 0;
+  }
   h4 {
     font-weight: 400;
     font-family: 'Open Sans', sans-serif;
-    padding: 40px 0 20px 0;
+    padding: 30px 0 5px 0;
   }
   p {
     font-weight: 400;
@@ -78,15 +83,10 @@ export const TableWapper = styled.div`
 
   color: #4d4d4d;
 
-  h5 {
-    font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
-    font-style: italic;
-  }
   p {
     font-weight: 400;
     font-family: 'Open Sans', sans-serif;
-    padding: 0 0 20px 0;
+    padding: 0 0 10px 0;
     font-size: 14px;
   }
 
@@ -96,15 +96,58 @@ export const TableWapper = styled.div`
 
   button.bnt-add {
     margin: 10px 0;
-    width: calc(100% - 60%);
-    background: lightgreen;
-    border: 0;
+    width: 200px;
+    background: white;
+    border: 1px solid yellowgreen;
+    border-radius: 5px;
     padding: 10px 0;
     font-weight: 400;
     text-transform: uppercase;
 
     &:hover {
       background: ${darken(0.09, 'lightgreen')};
+      color: white;
     }
+  }
+
+  button.bnt-csv {
+    margin: 10px 0;
+    width: 200px;
+    background: white;
+    border: 1px solid yellowgreen;
+    border-radius: 5px;
+    padding: 10px 0;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    a {
+      color: #4d4d4d;
+    }
+
+    &:hover {
+      background: ${darken(0.09, 'lightgreen')};
+      color: white;
+
+      a {
+        color: white;
+      }
+    }
+  }
+
+  .search {
+    input {
+      width: 50%;
+      height: 30px;
+      padding: 5px 10px;
+    }
+  }
+
+  p.search-result-none {
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 0;
+    font-size: 12px;
+    font-style: italic;
+    padding-right: 10px;
   }
 `;

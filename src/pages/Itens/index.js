@@ -1,20 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import {
-  format,
-  getMonth,
-  parseISO,
-  // subDays,
-  // addDays,
-  // setHours,
-  // setMinutes,
-  // setSeconds,
-  // setMilliseconds,
-  // isBefore,
-  // isEqual,
-  // parseISO,
-} from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
-import pt from 'date-fns/locale/pt';
+// import { format, getMonth, parseISO } from 'date-fns';
+// import { utcToZonedTime } from 'date-fns-tz';
+// import pt from 'date-fns/locale/pt';
 
 import { CSVLink } from 'react-csv';
 
@@ -31,31 +18,29 @@ import ChartItens from '~/components/Charts/ChartItens';
 import { Container, TableHeader, TableWapper } from './styles';
 
 export default function Itens() {
-  // const [loading, setLoading] = useState(true);
-
   // date
-  const monthNow = new Date();
-  const month = monthNow.toLocaleString('default', { month: 'short' });
-  console.log('monthNow', month);
+  // const monthNow = new Date();
+  // const month = monthNow.toLocaleString('default', { month: 'short' });
+  // console.log('monthNow', month);
 
-  const [date, setDate] = useState(new Date());
+  // const [date, setDate] = useState(new Date());
 
-  const dateFormatted = useMemo(
-    () => format(date, "d 'de' MMMM 'de' Y HH:mm:ss", { locale: pt }),
-    [date]
-  );
+  // const dateFormatted = useMemo(
+  //   () => format(date, "d 'de' MMMM 'de' Y HH:mm:ss", { locale: pt }),
+  //   [date]
+  // );
 
-  console.log('date', date);
-  console.log('dateFormatted', dateFormatted);
+  // console.log('date', date);
+  // console.log('dateFormatted', dateFormatted);
 
   // data
   const [itens, setItens] = useState([]);
 
-  const z = itens.map(x =>
-    parseISO(x.createdAt).toLocaleString('default', { month: 'short' })
-  );
+  // const z = itens.map(x =>
+  //   parseISO(x.createdAt).toLocaleString('default', { month: 'short' })
+  // );
 
-  console.log('xa', z);
+  // console.log('xa', z);
 
   // initial form state
   const initialFormState = {
@@ -152,21 +137,20 @@ export default function Itens() {
   return (
     <>
       <Container>
-        <h1>Itens</h1>
-        <h4>Produtos cadastrados</h4>
+        <h1>Itens e Produtos</h1>
         <p>
-          Aqui você encontra todos os seus itens do seu inventário. Adcione,
-          exclua, edite e delete o que você quiser, o que você precisar.
+          Aqui você encontra todos os seus itens cadastrados. Adicione, exclua,
+          edite e delete o que você quiser, quando quiser. Logo abaixo, você
+          acompanha todo o seu estoque com a precisão dos gráficos.
         </p>
-        <ChartItens itens={itens} />
         <TableWapper>
           <TableHeader>
-            <h5>Lista dos produtos</h5>
+            <h4>Meu banco de dados.</h4>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              Itens? Produtos? Indenpendente do termo, tenha total controle do
+              seu estoque, de qualquer espécie, com o seu próprio banco de
+              dados. Você poed adicionar, excluir, editar e deletar quantos
+              itens quiser.
             </p>
             <button
               className="bnt-add"
@@ -175,7 +159,25 @@ export default function Itens() {
             >
               Cadastrar novo item
             </button>
-            <CSVLink data={itens}>Download CVS</CSVLink>
+            <h4>
+              Salve o seu banco de dados em CVS.
+              <br />
+              Acesse em qualquer aplicativo de planilhas.
+            </h4>
+            <p>
+              Itens? Produtos? Indenpendente do termo, tenha total controle do
+              seu estoque, de qualquer espécie, com o seu próprio banco de
+              dados. Você poed adicionar, excluir, editar e deletar quantos
+              itens quiser.
+            </p>
+            <button type="button" className="bnt-csv">
+              <CSVLink data={itens}>Download CVS</CSVLink>
+            </button>
+            <h4>Encontre o item pelo nome.</h4>
+            <p>
+              Comece a digitar o nome do produto para encontar no seu banco de
+              dados.
+            </p>
             <form className="search">
               <input
                 value={searchValue}
@@ -185,7 +187,7 @@ export default function Itens() {
             </form>
             {itens.length ? (
               <div>
-                <p>
+                <p className="search-result-none">
                   Total de itens cadastrados: <strong>{itens.length}</strong>
                 </p>
               </div>
@@ -200,6 +202,7 @@ export default function Itens() {
             editRow={editRow}
           />
         </TableWapper>
+        <ChartItens itens={itens} />
       </Container>
       <Modali.Modal {...firstModal}>
         <ModalCreate
@@ -220,53 +223,3 @@ export default function Itens() {
     </>
   );
 }
-
-// class PostSection extends React.Component {
-//   static defaultProps = {
-//     posts: [],
-//     title: '',
-//     limit: 12,
-//     showLoadMore: true,
-//     loadMoreTitle: 'VER MAIS',
-//     perPageLimit: 12
-//   }
-
-//   state = {
-//     limit: this.props.limit
-//   }
-
-//   increaseLimit = () =>
-//     this.setState(prevState => ({
-//       limit: prevState.limit + this.props.perPageLimit
-//     }))
-
-//   render() {
-//     const { posts, title, showLoadMore, loadMoreTitle } = this.props,
-//       { limit } = this.state,
-//       visiblePosts = posts.slice(0, limit || posts.length)
-
-//     return (
-//       <div className="post-section">
-//         {title && <h2>{title}</h2>}
-//         {!!visiblePosts.length && (
-//           <div className="post-section-wrapper">
-//             {visiblePosts.map((post, index) =>
-//               post.status == "Ad"
-//               ? <AdCard key={post.title + index} {...post} />
-//               : <PostCard key={post.title + index} {...post} />
-//               )}
-//           </div>
-//         )}
-//         {showLoadMore && visiblePosts.length < posts.length && (
-//           <div className="ver-mais">
-//             <button onClick={this.increaseLimit}>
-//               {loadMoreTitle}
-//             </button>
-//           </div>
-//         )}
-//       </div>
-//     )
-//   }
-// }
-
-// export default PostSection
