@@ -1,75 +1,76 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
+
+export const TableOverflow = styled.div`
+  overflow-x: auto;
+  padding: 20px 0 0;
+
+  .btn-ver-mais {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .btn-ver-mais button {
+    margin: 0 auto;
+    text-align: center;
+    width: auto;
+    background: #fff;
+    border: 1px solid yellowgreen;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #8493a5;
+
+    &:hover {
+      background: ${darken(0.09, 'lightgreen')};
+      color: white;
+    }
+  }
+`;
 
 export const Table = styled.table`
   background: #ffffff;
   border-spacing: 0;
-  overflow: hidden;
   width: 100%;
   height: auto;
   text-align: left;
-  border-collapse: separate;
-  border: 1px solid #e1e1e1;
-
-  .iconLetter {
-    width: 50px;
-  }
-
-  .iconLetter div {
-    width: 24px;
-    height: 24px;
-    background-color: #fa8d68;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  .iconLetter div p {
-    text-align: center;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: normal;
-  }
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 3px solid #e1e1e1;
+  border-collapse: collapse;
 
   thead th {
-    font-size: 13px;
+    font-size: 14px;
     color: #9198af;
     font-weight: normal;
-    height: 40px;
-    border-bottom: 1px solid #e1e1e1;
+    border-top: 3px solid #e1e1e1;
+    border-bottom: 3px solid #e1e1e1;
+    padding: 10px;
+    text-transform: capitalize;
   }
 
   tbody td {
-    height: 40px;
-    color: #2a2d3b;
+    color: #353c48;
     font-size: 14px;
     font-weight: normal;
+    padding: 10px;
   }
 
-  /* tbody tr {
-    animation: background-fade 10s forwards;
-    -webkit-animation: background-fade 10s forwards;
-    -moz-animation: background-fade 10s forwards;
+  tbody tr {
+    vertical-align: baseline;
+    text-transform: capitalize;
   }
-
-  @-webkit-keyframes background-fade {
-    10% {
-      background: lightgreen;
-    }
-  }
-  @-moz-keyframes background-fade {
-    10% {
-      background: lightgreen;
-    }
-  }
-  @keyframes background-fade {
-    10% {
-      background: lightgreen;
-    }
-  } */
 
   tbody tr:hover {
-    background: lightblue !important;
+    background: #f9fafc !important;
     cursor: pointer;
+
+    td {
+      font-weight: bolder;
+    }
   }
 
   tbody tr td {
@@ -106,10 +107,9 @@ export const Form = styled.form`
   display: flex;
   justify-content: center;
   flex-flow: column;
-  width: 432px;
+  align-items: flex-start;
+  width: 100%;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 16px 10px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
   overflow: hidden;
 
@@ -117,7 +117,6 @@ export const Form = styled.form`
     font-size: 16px;
     font-weight: normal;
     padding: 16px;
-    border-bottom: 1px solid #c0c3d2;
     margin-bottom: 34px;
   }
 
@@ -133,20 +132,25 @@ export const Form = styled.form`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    border-top: 1px solid #c0c3d2;
+    outline: 0;
   }
 
   .cancelar {
     width: 72px;
     height: 32px;
     border: none;
-    color: #fa7268;
+    color: white;
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
-    border-radius: 16px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
     border: solid 1px rgba(255, 255, 255, 0.16);
+    background: #dee2e6;
+
+    &:hover {
+      background: ${darken(0.09, '#dee2e6')};
+      color: white;
+    }
   }
 
   .excluir {
@@ -155,11 +159,15 @@ export const Form = styled.form`
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
-    border-radius: 16px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
     border: solid 1px rgba(255, 255, 255, 0.16);
-    background-color: #fa7268;
+    background-color: pink;
     color: #fff;
     margin: 16px;
+
+    &:hover {
+      background: ${darken(0.09, 'pink')};
+      color: white;
+    }
   }
 `;

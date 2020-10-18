@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { format, getMonth, parseISO } from 'date-fns';
 // import { utcToZonedTime } from 'date-fns-tz';
 // import pt from 'date-fns/locale/pt';
@@ -61,24 +61,13 @@ export default function Itens() {
   const [firstModal, toggleFirstModal] = useModali({
     closeButton: true,
     animated: true,
+    centered: true,
   });
   const [secondModal, toggleSecondModal] = useModali({
     closeButton: true,
     animated: true,
+    centered: true,
   });
-
-  // get itens
-  useEffect(() => {
-    async function loadItens() {
-      const response = await DataService.getProducts();
-
-      const { data } = response;
-
-      setItens([...data]);
-    }
-
-    loadItens();
-  }, []);
 
   // search
   const [searchValue, setSearchValue] = useState('');
@@ -92,6 +81,19 @@ export default function Itens() {
     : itens.filter(item =>
         item.product_name.toLowerCase().includes(searchValue.toLowerCase())
       );
+
+  // get itens
+  useEffect(() => {
+    async function loadItens() {
+      const response = await DataService.getProducts();
+
+      const { data } = response;
+
+      setItens([...data]);
+    }
+
+    loadItens();
+  }, []);
 
   // create
   const [btnDisable, setBtnDisable] = useState('');
@@ -142,59 +144,51 @@ export default function Itens() {
           Aqui você encontra todos os seus itens cadastrados. Adicione, exclua,
           edite e delete o que você quiser, quando quiser. Logo abaixo, você
           acompanha todo o seu estoque com a precisão dos gráficos.
+          <br />
+          <br />
+          Itens? Produtos? Indenpendente do termo, tenha total controle do seu
+          estoque, de qualquer espécie, com o seu próprio banco de dados. Você
+          poed adicionar, excluir, editar e deletar quantos itens quiser.
         </p>
-        <TableWapper>
-          <TableHeader>
-            <h4>Meu banco de dados.</h4>
-            <p>
-              Itens? Produtos? Indenpendente do termo, tenha total controle do
-              seu estoque, de qualquer espécie, com o seu próprio banco de
-              dados. Você poed adicionar, excluir, editar e deletar quantos
-              itens quiser.
-            </p>
-            <button
-              className="bnt-add"
-              onClick={toggleFirstModal}
-              type="button"
-            >
-              Cadastrar novo item
-            </button>
-            <h4>
+        <TableHeader>
+          <p>
+            <strong>Cadastrar um novo item.</strong>
+          </p>
+          <button className="bnt-add" onClick={toggleFirstModal} type="button">
+            Adicionar
+          </button>
+        </TableHeader>
+        <TableHeader>
+          <p>
+            <strong>
               Salve o seu banco de dados em CVS.
               <br />
               Acesse em qualquer aplicativo de planilhas.
-            </h4>
-            <p>
-              Itens? Produtos? Indenpendente do termo, tenha total controle do
-              seu estoque, de qualquer espécie, com o seu próprio banco de
-              dados. Você poed adicionar, excluir, editar e deletar quantos
-              itens quiser.
-            </p>
-            <button type="button" className="bnt-csv">
-              <CSVLink data={itens}>Download CVS</CSVLink>
-            </button>
-            <h4>Encontre o item pelo nome.</h4>
-            <p>
-              Comece a digitar o nome do produto para encontar no seu banco de
-              dados.
-            </p>
-            <form className="search">
-              <input
-                value={searchValue}
-                onChange={handleSearchInputChanges}
-                type="text"
-              />
-            </form>
-            {itens.length ? (
-              <div>
-                <p className="search-result-none">
-                  Total de itens cadastrados: <strong>{itens.length}</strong>
-                </p>
-              </div>
-            ) : (
-              <p className="search-result-none">Carregando...</p>
-            )}
-          </TableHeader>
+            </strong>
+          </p>
+          <button type="button" className="bnt-csv">
+            <CSVLink data={itens}>Download CVS</CSVLink>
+          </button>
+        </TableHeader>
+        <TableWapper>
+          <p>Meu banco de dados.</p>
+          <form className="search">
+            <input
+              value={searchValue}
+              onChange={handleSearchInputChanges}
+              placeholder="Encontre o item que você está procurando pelo nome..."
+              type="text"
+            />
+          </form>
+          {itens.length ? (
+            <div>
+              <p className="search-result-none">
+                Total de itens cadastrados: <strong>{itens.length}</strong>
+              </p>
+            </div>
+          ) : (
+            <p className="search-result-none">Carregando...</p>
+          )}
           <TableItens
             toggleSecondModal={toggleSecondModal}
             itens={results}

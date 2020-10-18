@@ -48,18 +48,16 @@ export default function DefaultLayout({ children }) {
           <NavItem eventKey="profile">
             <NavIcon>
               <Profile>
-                <div>
-                  <Link to="/profile">
-                    <img
-                      src={
-                        profile.avatar
-                          ? profile.avatar.url
-                          : 'https://api.adorable.io/avatars/50/abott@adorable.png'
-                      }
-                      alt="Avatar"
-                    />
-                  </Link>
-                </div>
+                <Link to="/profile">
+                  <img
+                    src={
+                      profile.avatar
+                        ? profile.avatar.url
+                        : 'https://api.adorable.io/avatars/50/abott@adorable.png'
+                    }
+                    alt="Avatar"
+                  />
+                </Link>
               </Profile>
             </NavIcon>
             <NavText>{profile.name}</NavText>

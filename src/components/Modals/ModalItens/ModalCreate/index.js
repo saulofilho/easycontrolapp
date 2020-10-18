@@ -1,80 +1,79 @@
-import React, { useState } from 'react';
-import DataService from '~/services/allServices';
-// import MaskedInput from 'react-text-mask';
+import React from 'react';
 import { Container, Form } from './styles';
+
+// https://github.com/uNmAnNeR/imaskjs/tree/master/packages/react-imask
+// https://unform.dev/guides/basic-form
 
 function ModalCreate(props) {
   return (
     <Container>
       <Form>
-        <p>Criar novo contato</p>
         <label htmlFor="name">
-          Nome
+          Nome do item
           <input
             type="text"
             name="product_name"
             id="name"
-            placeholder="Nome Completo"
+            placeholder="Bola"
             onChange={props.handleInputChange}
           />
         </label>
         <label htmlFor="info">
-          info
-          <input
-            type="text"
+          Informações
+          <textarea
             name="product_info"
             id="info"
-            placeholder="Nome Completo"
+            placeholder="Produto da campanha de Natal..."
             onChange={props.handleInputChange}
           />
         </label>
         <label htmlFor="department">
-          department
+          Departamento
           <input
             type="text"
             name="product_department"
             id="department"
-            placeholder="Nome Completo"
+            placeholder="Comercial"
             onChange={props.handleInputChange}
           />
         </label>
         <label htmlFor="color">
-          color
+          Cor
           <input
             type="text"
             name="product_color"
             id="color"
-            placeholder="color"
+            placeholder="Azul"
             onChange={props.handleInputChange}
           />
         </label>
         <label htmlFor="material">
-          material
+          Material
           <input
             type="text"
             name="product_material"
             id="material"
-            placeholder="material"
+            placeholder="Plástico"
             onChange={props.handleInputChange}
           />
         </label>
         <label htmlFor="price">
-          price
+          Preço
           <input
             type="text"
             name="product_price"
             id="price"
-            placeholder="price"
+            placeholder="9.99"
             onChange={props.handleInputChange}
           />
         </label>
         <label htmlFor="stock">
-          stock
+          Estoque
           <input
             type="text"
             name="product_stock"
             id="stock"
-            placeholder="stock"
+            placeholder="1"
             onChange={props.handleInputChange}
           />
         </label>

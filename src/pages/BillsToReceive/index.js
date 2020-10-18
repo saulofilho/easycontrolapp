@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Container } from './styles';
 
-export default function Fluxo() {
+export default function BillsToReceive() {
   return (
     <Container>
-      <h1>Fluxo</h1>
+      <h1>ContasReceber</h1>
     </Container>
   );
 }

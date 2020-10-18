@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   display: flex;
@@ -17,7 +18,6 @@ export const Form = styled.form`
   height: auto;
   border-radius: 5px;
   background-color: #ffffff;
-  overflow: hidden;
 
   p {
     font-size: 16px;
@@ -29,39 +29,30 @@ export const Form = styled.form`
   label {
     font-size: 14px;
     font-weight: normal;
+    color: #8493a5;
   }
 
   input {
     width: 100%;
-    height: 32px;
-    border-radius: 4px;
-    border: solid 1px #c0c3d2;
-    background-color: #ffffff;
-    margin: 4px 0 20px 0;
-    padding: 7px 0 6px 8px;
+    height: auto;
+    padding: 10px 15px;
+    background: #f9fafc;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    margin: 5px 0 20px;
   }
 
-  #phone2 {
-    width: 128px;
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    outline: 0;
-  }
-
-  .cancelar {
-    width: 72px;
-    height: 32px;
-    border: none;
-    color: #fa7268;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
+  textarea {
+    width: 100%;
+    height: auto;
+    padding: 10px 15px;
+    background: #f9fafc;
+    border: 1px solid #dee2e6;
     border-radius: 5px;
-    border: solid 1px rgba(255, 255, 255, 0.16);
+    overflow: auto;
+    resize: vertical;
+    margin: 5px 0 20px;
+    font-family: 'Open Sans', sans-serif;
   }
 
   .salvar {
@@ -70,10 +61,13 @@ export const Form = styled.form`
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
-    border-radius: 4px;
     border: solid 1px rgba(255, 255, 255, 0.16);
-    background-color: #fa7268;
+    background-color: lightgreen;
     color: #fff;
-    margin: 16px;
+
+    &:hover {
+      background: ${darken(0.09, 'lightgreen')};
+      color: white;
+    }
   }
 `;

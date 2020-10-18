@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
     background: white;
     border-right: 1px solid lightgray;
     box-shadow: 1px 1px 2px 0 rgba(31, 45, 61, 0.07);
+    text-transform: capitalize;
 
     .sidenav---navtext---1AE_f {
       color: #a3a3a3 !important;
@@ -47,6 +48,21 @@ export const Wrapper = styled.div`
       > .sidenav---navitem---9uL5T:hover {
       background: #dfeff7 !important;
     }
+
+    .sidenav---navitem---9uL5T {
+      display: flex !important;
+      flex-flow: row !important;
+    }
+
+    .sidenav---sidenav-subnav---1EN61
+      > .sidenav---sidenav-subnavitem---1cD47:first-child {
+      border-bottom: unset !important;
+    }
+
+    .sidenav---navicon---3gCRo {
+      margin-right: 20px;
+    }
+
     @media (max-width: 500px) {
       position: unset;
       display: none;
@@ -54,31 +70,21 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const TopNav = styled.div``;
-
 export const Profile = styled.div`
-  width: 50px;
   display: flex;
   flex-flow: column;
-  padding-left: 10px;
   justify-content: center;
   align-items: center;
   text-transform: capitalize;
 
-  div {
-    text-align: center;
-
-    a {
-      display: block;
-      margin-top: 2px;
-      font-size: 12px;
-      color: #999;
-    }
+  a {
+    height: 40px !important;
+    color: #999;
   }
 
   img {
-    height: 40px;
     border-radius: 50%;
-    width: 100%;
+    width: 35px;
+    height: 35px;
   }
 `;

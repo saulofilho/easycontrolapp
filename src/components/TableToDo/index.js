@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react';
 import swal from '@sweetalert/with-react';
 import { MdEdit, MdDelete } from 'react-icons/md';
@@ -13,44 +12,34 @@ function TableRow(props) {
     setLimit(limit + limit);
   };
 
-  const visiblePosts = props.itens.slice(0, limit || props.itens.length);
+  const visiblePosts = props.todos.slice(0, limit || props.todos.length);
 
   return (
-    <TableOverflow>
-      <Table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>nome</th>
-            <th>infos</th>
-            <th>departamento</th>
-            <th>cor</th>
-            <th>material</th>
-            <th>preco</th>
-            <th>estoque</th>
-            <th />
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {visiblePosts.length > 0
-            ? visiblePosts
-                .sort((a, b) => a.id - b.id)
-                .map(item => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.product_name}</td>
-                    <td>{item.product_info}</td>
-                    <td>{item.product_department}</td>
-                    <td>{item.product_color}</td>
-                    <td>{item.product_material}</td>
-                    <td>{item.product_price}</td>
-                    <td>{item.product_stock}</td>
+    <>
+      <TableOverflow>
+        <Table>
+          <thead>
+            <tr>
+              <th>todo title</th>
+              <th>todo text</th>
+              <th>done</th>
+              <th />
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {console.log(props.todos)}
+            {props.todos.length > 0
+              ? props.todos.map(todo => (
+                  <tr key={todo.id}>
+                    <td>{todo.todo_title}</td>
+                    <td>{todo.todo_text}</td>
+                    <td>{todo.todo_done}</td>
                     <td>
                       <button
                         className="editBtn"
                         type="button"
-                        onClick={() => props.editRow(item)}
+                        onClick={() => props.editRow(todo)}
                       >
                         <MdEdit size={22} color="lightblue" />
                       </button>
@@ -65,7 +54,7 @@ function TableRow(props) {
                             content: (
                               <Container>
                                 <Form>
-                                  <p>Deseja realmente excluir o item?</p>
+                                  <p>Deseja realmente excluir o contato?</p>
                                   <div className="buttons">
                                     <button
                                       className="cancelar"
@@ -78,7 +67,7 @@ function TableRow(props) {
                                       className="excluir"
                                       type="button"
                                       onClick={() => {
-                                        props.deleteItem(item.id);
+                                        props.deleteTodo(todo.id);
                                         window.location.reload();
                                       }}
                                     >
@@ -96,17 +85,18 @@ function TableRow(props) {
                     </td>
                   </tr>
                 ))
-            : null}
-        </tbody>
-      </Table>
-      {showLoadMore && visiblePosts.length < props.itens.length && (
-        <div className="btn-ver-mais">
-          <button type="button" onClick={increaseLimit}>
-            CARREGAR MAIS ITENS
-          </button>
-        </div>
-      )}
-    </TableOverflow>
+              : null}
+          </tbody>
+        </Table>
+        {showLoadMore && visiblePosts.length < props.todos.length && (
+          <div className="btn-ver-mais">
+            <button type="button" onClick={increaseLimit}>
+              CARREGAR MAIS ITENS
+            </button>
+          </div>
+        )}
+      </TableOverflow>
+    </>
   );
 }
 

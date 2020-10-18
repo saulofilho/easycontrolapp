@@ -8,9 +8,8 @@ function ModalEdit(props) {
   return (
     <Container>
       <Form>
-        <p>Editar</p>
         <label htmlFor="name">
-          Nome
+          Nome do item
           <input
             type="text"
             name="product_name"
@@ -20,9 +19,8 @@ function ModalEdit(props) {
           />
         </label>
         <label htmlFor="info">
-          info
-          <input
-            type="text"
+          Informações
+          <textarea
             name="product_info"
             value={props.currentItem && props.currentItem.product_info}
             id="info"
@@ -30,7 +28,7 @@ function ModalEdit(props) {
           />
         </label>
         <label htmlFor="department">
-          department
+          Departamento
           <input
             type="text"
             name="product_department"
@@ -40,7 +38,7 @@ function ModalEdit(props) {
           />
         </label>
         <label htmlFor="color">
-          color
+          Cor
           <input
             type="text"
             name="product_color"
@@ -50,7 +48,7 @@ function ModalEdit(props) {
           />
         </label>
         <label htmlFor="material">
-          material
+          Material
           <input
             type="text"
             name="product_material"
@@ -60,7 +58,7 @@ function ModalEdit(props) {
           />
         </label>
         <label htmlFor="price">
-          price
+          Preço
           <input
             type="text"
             name="product_price"
@@ -70,7 +68,7 @@ function ModalEdit(props) {
           />
         </label>
         <label htmlFor="stock">
-          stock
+          Estoque
           <input
             type="text"
             name="product_stock"

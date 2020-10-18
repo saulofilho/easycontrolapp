@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Container } from './styles';
 
-export default function ContasReceber() {
+export default function BillsToPay() {
   return (
     <Container>
-      <h1>ContasReceber</h1>
+      <h1>ContasPagar</h1>
     </Container>
   );
 }

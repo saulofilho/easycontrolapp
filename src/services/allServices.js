@@ -126,11 +126,3 @@ export default {
   updateReminders,
   removeReminders,
 };
-
-// const get = id => {
-//   return api.get(`/tutorials/${id}`);
-// };
-
-// const findByTitle = title => {
-//   return api.get(`/tutorials?title=${title}`);
-// };

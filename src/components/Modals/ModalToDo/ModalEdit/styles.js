@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   display: flex;
@@ -6,48 +7,52 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 20px;
 `;
 
 export const Form = styled.form`
   display: flex;
   justify-content: center;
   flex-flow: column;
+  width: 100%;
   height: auto;
-  overflow: hidden;
+  border-radius: 5px;
+  background-color: #ffffff;
 
   p {
     font-size: 16px;
     font-weight: normal;
     padding: 16px;
-    border-bottom: 1px solid #c0c3d2;
     margin-bottom: 34px;
   }
 
   label {
-    margin-left: 24px;
     font-size: 14px;
     font-weight: normal;
+    color: #8493a5;
   }
 
   input {
-    width: 384px;
-    height: 32px;
-    border-radius: 4px;
-    border: solid 1px #c0c3d2;
-    background-color: #ffffff;
-    margin: 4px 0 16px 24px;
-    padding: 7px 0 6px 8px;
+    width: 100%;
+    height: auto;
+    padding: 10px 15px;
+    background: #f9fafc;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    margin: 5px 0 20px;
   }
 
-  #phone {
-    width: 128px;
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-top: 1px solid #c0c3d2;
+  textarea {
+    width: 100%;
+    height: auto;
+    padding: 10px 15px;
+    background: #f9fafc;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    overflow: auto;
+    resize: vertical;
+    margin: 5px 0 20px;
+    font-family: 'Open Sans', sans-serif;
   }
 
   .salvar {
@@ -56,14 +61,13 @@ export const Form = styled.form`
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px rgba(255, 255, 255, 0.16);
     background-color: lightgreen;
     color: #fff;
-    margin: 16px;
 
-    &[disabled] {
-      background-color: #fff3f2;
+    &:hover {
+      background: ${darken(0.09, 'lightgreen')};
+      color: white;
     }
   }
 `;

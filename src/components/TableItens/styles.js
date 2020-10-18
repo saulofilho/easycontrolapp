@@ -3,26 +3,27 @@ import { darken } from 'polished';
 
 export const TableOverflow = styled.div`
   overflow-x: auto;
-  padding: 20px 0;
+  padding: 20px 0 0;
 
   .btn-ver-mais {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0 0;
+    padding: 20px 0;
   }
 
   .btn-ver-mais button {
     margin: 0 auto;
     text-align: center;
     width: auto;
-    background: lightgreen;
+    background: #fff;
+    border: 1px solid yellowgreen;
     border-radius: 5px;
     padding: 10px;
     font-weight: 400;
     text-transform: uppercase;
-    border: unset;
+    color: #8493a5;
 
     &:hover {
       background: ${darken(0.09, 'lightgreen')};
@@ -38,19 +39,21 @@ export const Table = styled.table`
   height: auto;
   text-align: left;
   border-top: 1px solid #e1e1e1;
+  border-bottom: 3px solid #e1e1e1;
   border-collapse: collapse;
 
   thead th {
     font-size: 14px;
     color: #9198af;
     font-weight: normal;
+    border-top: 3px solid #e1e1e1;
     border-bottom: 3px solid #e1e1e1;
     padding: 10px;
     text-transform: capitalize;
   }
 
   tbody td {
-    color: #4d4d4d;
+    color: #353c48;
     font-size: 14px;
     font-weight: normal;
     padding: 10px;
@@ -62,8 +65,12 @@ export const Table = styled.table`
   }
 
   tbody tr:hover {
-    background: #dfeff7 !important;
+    background: #f9fafc !important;
     cursor: pointer;
+
+    td {
+      font-weight: bolder;
+    }
   }
 
   tbody tr td {
@@ -132,12 +139,18 @@ export const Form = styled.form`
     width: 72px;
     height: 32px;
     border: none;
-    color: #fa7268;
+    color: white;
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
     border-radius: 5px;
     border: solid 1px rgba(255, 255, 255, 0.16);
+    background: #dee2e6;
+
+    &:hover {
+      background: ${darken(0.09, '#dee2e6')};
+      color: white;
+    }
   }
 
   .excluir {
@@ -148,8 +161,13 @@ export const Form = styled.form`
     font-stretch: normal;
     border-radius: 5px;
     border: solid 1px rgba(255, 255, 255, 0.16);
-    background-color: #fa7268;
+    background-color: pink;
     color: #fff;
     margin: 16px;
+
+    &:hover {
+      background: ${darken(0.09, 'pink')};
+      color: white;
+    }
   }
 `;
