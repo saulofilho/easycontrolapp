@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Modali, { useModali } from 'modali';
 
 import DataService from '~/services/allServices';
-import TableToDo from '~/components/TableToDo';
-import ModalCreate from '~/components/Modals/ModalToDo/ModalCreate';
-import ModalEdit from '~/components/Modals/ModalToDo/ModalEdit';
+import TableCashFlow from '~/components/TableCashFlow';
+import ModalCreate from '~/components/Modals/ModalCashFlow/ModalCreate';
+import ModalEdit from '~/components/Modals/ModalCashFlow/ModalEdit';
 
 import { Container, TableHeader, TableWapper } from './styles';
 
@@ -15,9 +15,8 @@ export default function ToDo() {
   // initial form state
   const initialFormState = {
     id: '',
-    todo_title: '',
-    todo_text: '',
-    todo_done: true,
+    cash_in: '',
+    cash_out: '',
   };
 
   // get todo
@@ -50,15 +49,15 @@ export default function ToDo() {
 
   // get todo
   useEffect(() => {
-    async function loadTodos() {
-      const response = await DataService.getTodo();
+    async function loadCashFlow() {
+      const response = await DataService.getCashflow();
 
       const { data } = response;
 
       setTodos([...data]);
     }
 
-    loadTodos();
+    loadCashFlow();
   }, []);
 
   // create
@@ -103,7 +102,7 @@ export default function ToDo() {
   return (
     <>
       <Container>
-        <h1>Tarefas</h1>
+        <h1>Fluxo de Caixa</h1>
         <p>
           xxx
           <br />
@@ -137,7 +136,7 @@ export default function ToDo() {
           ) : (
             <p className="search-result-none">Carregando...</p>
           )}
-          <TableToDo
+          <TableCashFlow
             toggleSecondModal={toggleSecondModal}
             todos={results}
             deleteTodo={deleteTodo}

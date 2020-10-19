@@ -30,6 +30,19 @@ const removeCalendar = id => {
   return api.delete(`/calendar/${id}`);
 };
 
+const getClients = () => {
+  return api.get('/clients');
+};
+const createClients = data => {
+  return api.post('/clients', data);
+};
+const updateClients = (id, data) => {
+  return api.put(`/clients/${id}`, data);
+};
+const removeClients = id => {
+  return api.delete(`/clients/${id}`);
+};
+
 const getReceive = () => {
   return api.get('/receive');
 };
@@ -105,6 +118,10 @@ export default {
   createCalendar,
   updateCalendar,
   removeCalendar,
+  getClients,
+  createClients,
+  updateClients,
+  removeClients,
   getReceive,
   createReceive,
   updateReceive,

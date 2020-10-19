@@ -6,6 +6,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 
 import Home from '../pages/Home';
+import Calendar from '../pages/Calendar';
 import Agenda from '../pages/Agenda';
 import Itens from '../pages/Itens';
 import CashFlow from '../pages/CashFlow';
@@ -20,6 +21,7 @@ export default function Routes() {
       <Route path="/" exact component={SignIn} />
       <Route path="/register" component={SignUp} />
       <Route path="/home" component={Home} isPrivate />
+      <Route path="/calendario" component={Calendar} isPrivate />
       <Route path="/agenda" component={Agenda} isPrivate />
       <Route path="/itens" component={Itens} isPrivate />
       <Route path="/fluxo-de-caixa" component={CashFlow} isPrivate />

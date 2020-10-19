@@ -1,34 +1,37 @@
 import React from 'react';
 
-import { MdInsertEmoticon } from 'react-icons/md';
-
-// import React, { useState, useMemo, useEffect } from 'react';
-// import {
-//   format,
-//   subDays,
-//   addDays,
-//   setHours,
-//   setMinutes,
-//   setSeconds,
-//   setMilliseconds,
-//   isBefore,
-//   isEqual,
-//   parseISO,
-// } from 'date-fns';
-// import { utcToZonedTime } from 'date-fns-tz';
-// import pt from 'date-fns/locale/pt';
-// import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-// import api from '~/services/api';
-
 import { Container } from './styles';
 
 export default function Home() {
   return (
     <Container>
-      <MdInsertEmoticon color="#000" />
-      <p>
-        <span>Easy</span>Control
-      </p>
+      <h1>api BuenaVistaLab</h1>
+      <ol>
+        <li>ola, user</li>
+        <li>mensagens sobre o sistema, atualizacoes etc</li>
+        <li>status pagamento</li>
+      </ol>
+      <br />
+      <br />
+      <h1>api EasyControl</h1>
+      <ol>
+        <li>total de itens cadastrados</li>
+        <li>total de tarefas cadastradas e proximas tasks</li>
+        <li>fluxo do caixa</li>
+        <li>proximos eventos na agenda</li>
+      </ol>
+      <br />
+      <br />
+      <h1>calculadora</h1>
+      <br />
+      <br />
+      <h1>clima</h1>
+      <br />
+      <br />
+      <h1>transito local</h1>
+      <br />
+      <br />
+      <h1>cotacao de moedas</h1>
     </Container>
   );
 }

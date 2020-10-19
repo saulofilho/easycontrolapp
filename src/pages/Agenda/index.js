@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
-import moment from 'moment';
-
-import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-
 import Modali, { useModali } from 'modali';
 
 import DataService from '~/services/allServices';
-
+import TableClients from '~/components/TableClients';
 import ModalCreate from '~/components/Modals/ModalToDo/ModalCreate';
 import ModalEdit from '~/components/Modals/ModalToDo/ModalEdit';
 
-import { Container } from './styles';
+import { Container, TableHeader, TableWapper } from './styles';
 
-const DragAndDropCalendar = withDragAndDrop(Calendar);
-const localizer = momentLocalizer(moment);
-
-export default function ToDo() {
+export default function Agenda() {
   // data
   const [todos, setTodos] = useState([]);
 
@@ -60,15 +50,15 @@ export default function ToDo() {
 
   // get todo
   useEffect(() => {
-    async function loadCalendar() {
-      const response = await DataService.getCalendar();
+    async function loadClients() {
+      const response = await DataService.getClients();
 
       const { data } = response;
 
       setTodos([...data]);
     }
 
-    loadCalendar();
+    loadClients();
   }, []);
 
   // create
@@ -110,67 +100,50 @@ export default function ToDo() {
     });
   };
 
-  const events = [
-    {
-      title: 'My event',
-      allDay: true,
-      start: moment().toDate(),
-      end: moment()
-        .add(4, 'hours')
-        .toDate(),
-    },
-  ];
-
-  // state = {
-  //   events: [
-  //     {
-  //       start: moment().toDate(),
-  //       end: moment().add(1, "days").toDate(),
-  //       title: "Some title",
-  //     },
-  //   ],
-  // };
-
-  // onEventResize = (data) => {
-  //   const { start, end } = data;
-
-  //   this.setState((state) => {
-  //     state.events[0].start = start;
-  //     state.events[0].end = end;
-  //     return { events: state.events };
-  //   });
-  // };
-
-  // onEventDrop = (data) => {
-  //   console.log(data);
-  // };
-
   return (
     <>
       <Container>
-        <h1>Tarefas</h1>
+        <h1>Agenda</h1>
         <p>
           xxx
           <br />
           <br />
           xxx
         </p>
-        <DragAndDropCalendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          style={{
-            minHeight: '720px',
-          }}
-          // onEventDrop={this.onEventDrop}
-          // onEventResize={this.onEventResize}
-          selectable
-          resizable
-          defaultView="month"
-          defaultDate={moment().toDate()}
-          showMultiDayTimes
-        />
+        <TableHeader>
+          <p>
+            <strong>Cadastrar uma nova tarefa.</strong>
+          </p>
+          <button className="bnt-add" onClick={toggleFirstModal} type="button">
+            Adicionar
+          </button>
+        </TableHeader>
+        <TableWapper>
+          <p>As minhas tarefas.</p>
+          <form className="search">
+            <input
+              value={searchValue}
+              onChange={handleSearchInputChanges}
+              placeholder="Procure qualquer tarefa pelo título..."
+              type="text"
+            />
+          </form>
+          {todos.length ? (
+            <div>
+              <p className="search-result-none">
+                Total de tarefas cadastradas: <strong>{todos.length}</strong>
+              </p>
+            </div>
+          ) : (
+            <p className="search-result-none">Carregando...</p>
+          )}
+          <TableClients
+            toggleSecondModal={toggleSecondModal}
+            todos={results}
+            deleteTodo={deleteTodo}
+            editRow={editRow}
+          />
+        </TableWapper>
         {/* <ChartTodDo todos={todos} /> */}
       </Container>
       <Modali.Modal {...firstModal}>

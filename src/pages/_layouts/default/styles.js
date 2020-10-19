@@ -46,7 +46,7 @@ export const Wrapper = styled.div`
     .sidenav---sidenav-subnav---1EN61
       > .sidenav---sidenav-subnavitem---1cD47
       > .sidenav---navitem---9uL5T:hover {
-      background: #dfeff7 !important;
+      background: #e9fce9 !important;
     }
 
     .sidenav---navitem---9uL5T {

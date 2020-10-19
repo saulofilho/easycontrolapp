@@ -14,7 +14,6 @@ import {
   ComposedChart,
   Area,
   Bar,
-  Cell,
   BarChart,
   AreaChart,
   PolarAngleAxis,

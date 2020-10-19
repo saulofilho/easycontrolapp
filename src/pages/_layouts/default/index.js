@@ -13,6 +13,7 @@ import {
   MdCompareArrows,
   MdTrendingDown,
   MdCardGiftcard,
+  MdAccountBox,
 } from 'react-icons/md';
 
 import SideNav, {
@@ -70,9 +71,15 @@ export default function DefaultLayout({ children }) {
           </NavItem>
           <NavItem eventKey="agenda">
             <NavIcon>
-              <MdEvent size={22} color="#a3a3a3" />
+              <MdAccountBox size={22} color="#a3a3a3" />
             </NavIcon>
             <NavText>Agenda</NavText>
+          </NavItem>
+          <NavItem eventKey="calendario">
+            <NavIcon>
+              <MdEvent size={22} color="#a3a3a3" />
+            </NavIcon>
+            <NavText>Calendário</NavText>
           </NavItem>
           <NavItem eventKey="financas">
             <NavIcon>

@@ -1,22 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
+import moment from 'moment';
+
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+
 import Modali, { useModali } from 'modali';
 
 import DataService from '~/services/allServices';
-import TableBillsToReceive from '~/components/TableBillsToReceive';
-import ModalCreate from '~/components/Modals/ModalCashFlow/ModalCreate';
-import ModalEdit from '~/components/Modals/ModalCashFlow/ModalEdit';
 
-import { Container, TableHeader, TableWapper } from './styles';
+import ModalCreate from '~/components/Modals/ModalToDo/ModalCreate';
+import ModalEdit from '~/components/Modals/ModalToDo/ModalEdit';
 
-export default function ToDo() {
+import { Container } from './styles';
+
+const DragAndDropCalendar = withDragAndDrop(Calendar);
+const localizer = momentLocalizer(moment);
+
+export default function CalendarPage() {
   // data
   const [todos, setTodos] = useState([]);
 
   // initial form state
   const initialFormState = {
     id: '',
-    cash_in: '',
-    cash_out: '',
+    todo_title: '',
+    todo_text: '',
+    todo_done: true,
   };
 
   // get todo
@@ -49,15 +60,15 @@ export default function ToDo() {
 
   // get todo
   useEffect(() => {
-    async function loadBillsToReceive() {
-      const response = await DataService.getReceive();
+    async function loadCalendar() {
+      const response = await DataService.getCalendar();
 
       const { data } = response;
 
       setTodos([...data]);
     }
 
-    loadBillsToReceive();
+    loadCalendar();
   }, []);
 
   // create
@@ -99,50 +110,67 @@ export default function ToDo() {
     });
   };
 
+  const events = [
+    {
+      title: 'My event',
+      allDay: true,
+      start: moment().toDate(),
+      end: moment()
+        .add(4, 'hours')
+        .toDate(),
+    },
+  ];
+
+  // state = {
+  //   events: [
+  //     {
+  //       start: moment().toDate(),
+  //       end: moment().add(1, "days").toDate(),
+  //       title: "Some title",
+  //     },
+  //   ],
+  // };
+
+  // onEventResize = (data) => {
+  //   const { start, end } = data;
+
+  //   this.setState((state) => {
+  //     state.events[0].start = start;
+  //     state.events[0].end = end;
+  //     return { events: state.events };
+  //   });
+  // };
+
+  // onEventDrop = (data) => {
+  //   console.log(data);
+  // };
+
   return (
     <>
       <Container>
-        <h1>Contas a receber</h1>
+        <h1>Calendário</h1>
         <p>
           xxx
           <br />
           <br />
           xxx
         </p>
-        <TableHeader>
-          <p>
-            <strong>Cadastrar uma nova tarefa.</strong>
-          </p>
-          <button className="bnt-add" onClick={toggleFirstModal} type="button">
-            Adicionar
-          </button>
-        </TableHeader>
-        <TableWapper>
-          <p>As minhas tarefas.</p>
-          <form className="search">
-            <input
-              value={searchValue}
-              onChange={handleSearchInputChanges}
-              placeholder="Procure qualquer tarefa pelo título..."
-              type="text"
-            />
-          </form>
-          {todos.length ? (
-            <div>
-              <p className="search-result-none">
-                Total de tarefas cadastradas: <strong>{todos.length}</strong>
-              </p>
-            </div>
-          ) : (
-            <p className="search-result-none">Carregando...</p>
-          )}
-          <TableBillsToReceive
-            toggleSecondModal={toggleSecondModal}
-            todos={results}
-            deleteTodo={deleteTodo}
-            editRow={editRow}
-          />
-        </TableWapper>
+        <DragAndDropCalendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          style={{
+            minHeight: '720px',
+          }}
+          // onEventDrop={this.onEventDrop}
+          // onEventResize={this.onEventResize}
+          selectable
+          resizable
+          defaultView="month"
+          defaultDate={moment().toDate()}
+          showMultiDayTimes
+        />
         {/* <ChartTodDo todos={todos} /> */}
       </Container>
       <Modali.Modal {...firstModal}>
