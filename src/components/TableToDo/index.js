@@ -28,7 +28,6 @@ function TableRow(props) {
             </tr>
           </thead>
           <tbody>
-            {console.log(props.todos)}
             {props.todos.length > 0
               ? props.todos.map(todo => (
                   <tr key={todo.id}>

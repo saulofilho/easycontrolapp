@@ -150,10 +150,9 @@ export default function CalendarPage() {
       <Container>
         <h1>Calendário</h1>
         <p>
-          xxx
-          <br />
-          <br />
-          xxx
+          Explicabo enim perferendis suscipit sequi odio architecto ad sequi
+          hic. Sed nobis aperiam est deleniti harum labore. Itaque voluptates
+          est necessitatibus quisquam. Facilis odit voluptatem.
         </p>
         <DragAndDropCalendar
           localizer={localizer}

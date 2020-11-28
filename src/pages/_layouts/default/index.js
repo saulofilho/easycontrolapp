@@ -119,7 +119,7 @@ export default function DefaultLayout({ children }) {
           </NavItem>
         </Nav>
       </SideNav>
-      <Footer />
+      {/* <Footer /> */}
     </Wrapper>
   );
 }

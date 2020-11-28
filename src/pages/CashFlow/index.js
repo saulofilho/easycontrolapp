@@ -6,6 +6,8 @@ import TableCashFlow from '~/components/TableCashFlow';
 import ModalCreate from '~/components/Modals/ModalCashFlow/ModalCreate';
 import ModalEdit from '~/components/Modals/ModalCashFlow/ModalEdit';
 
+import ChartCashFlow from '~/components/Charts/ChartCashFlow';
+
 import { Container, TableHeader, TableWapper } from './styles';
 
 export default function ToDo() {
@@ -104,14 +106,13 @@ export default function ToDo() {
       <Container>
         <h1>Fluxo de Caixa</h1>
         <p>
-          xxx
-          <br />
-          <br />
-          xxx
+          Explicabo enim perferendis suscipit sequi odio architecto ad sequi
+          hic. Sed nobis aperiam est deleniti harum labore. Itaque voluptates
+          est necessitatibus quisquam. Facilis odit voluptatem.
         </p>
         <TableHeader>
           <p>
-            <strong>Cadastrar uma nova tarefa.</strong>
+            <strong>Nova entrada.</strong>
           </p>
           <button className="bnt-add" onClick={toggleFirstModal} type="button">
             Adicionar
@@ -143,7 +144,7 @@ export default function ToDo() {
             editRow={editRow}
           />
         </TableWapper>
-        {/* <ChartTodDo todos={todos} /> */}
+        <ChartCashFlow todos={todos} />
       </Container>
       <Modali.Modal {...firstModal}>
         <ModalCreate
